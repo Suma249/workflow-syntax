@@ -1,0 +1,13 @@
+name: Create a comment on new issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment-with-action:
+    runs-on: windows-latest  # Corrected the typo
+
+    steps:
+      - name: "Dump GitHub context"
+        run: echo '${{ toJSON(github.event) }}'  # The correct syntax for echoing the context
