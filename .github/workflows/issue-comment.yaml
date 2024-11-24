@@ -10,4 +10,15 @@ jobs:
 
     steps:
       - name: "Dump GitHub context"
-        run: echo '${{ toJSON(github.event) }}'  # The correct syntax for echoing the context
+        run: echo '${{ toJSON(github.event) }}'  
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{github.event.issue.number}}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reactions: '+1'
